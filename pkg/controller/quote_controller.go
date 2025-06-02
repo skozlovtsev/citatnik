@@ -18,7 +18,10 @@ func GetQuotes() []model.Quote {
 
 func GetRandomQuote() model.Quote {
 	quotes := storage.Storage.GetAll()
-	return quotes[rand.IntN(len(quotes))]
+	if len(quotes) > 0 {
+		return quotes[rand.IntN(len(quotes))]
+	}
+	return model.Quote{}
 }
 
 func GetQuoteByAuthor(author string) []model.Quote {
